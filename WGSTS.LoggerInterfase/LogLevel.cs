@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace WGSTS.LoggerInterfase
+namespace WGSTS.Logger
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum LogLevel

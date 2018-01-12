@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WGSTS.LoggerInterfase
+namespace WGSTS.Logger
 {
     public interface ILogger
     {

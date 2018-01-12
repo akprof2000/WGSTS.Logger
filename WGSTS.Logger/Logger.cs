@@ -8,7 +8,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
-using WGSTS.LoggerInterfase;
 
 namespace WGSTS.Logger
 {

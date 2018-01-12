@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGSTS.LoggerInterfase", "WG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLogger", "TestLogger\TestLogger.csproj", "{CCD98504-C0B8-461E-B708-0AE37B2CF075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLoggers", "UnitTestLoggers\UnitTestLoggers.csproj", "{CEDC9BCA-F27C-48CC-B707-954DC8075518}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CCD98504-C0B8-461E-B708-0AE37B2CF075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCD98504-C0B8-461E-B708-0AE37B2CF075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD98504-C0B8-461E-B708-0AE37B2CF075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEDC9BCA-F27C-48CC-B707-954DC8075518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEDC9BCA-F27C-48CC-B707-954DC8075518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEDC9BCA-F27C-48CC-B707-954DC8075518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEDC9BCA-F27C-48CC-B707-954DC8075518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

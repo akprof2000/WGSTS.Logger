@@ -1,5 +1,4 @@
 ﻿using System;
-using WGSTS.LoggerInterfase;
 
 namespace WGSTS.Logger
 {

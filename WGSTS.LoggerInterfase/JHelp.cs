@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace WGSTS.LoggerInterfase
+namespace WGSTS.Logger
 {
     public static class JHelp
     {
