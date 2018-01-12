@@ -503,9 +503,9 @@ namespace UnitTestLoggers
                 {
                     try
                     {
-                        if (File.Exists(Path.Combine(_dir, test.log)))
+                        if (File.Exists(Path.Combine(_dir, "test.log")))
                         {
-                            text = File.ReadAllText(Path.Combine(_dir, test.log));
+                            text = File.ReadAllText(Path.Combine(_dir, "test.log"));
                             break;
                         }
                         Thread.Sleep(30);
@@ -578,9 +578,9 @@ namespace UnitTestLoggers
                 var text = "";
                 try
                 {
-                    if (File.Exists(Path.Combine(_dir, test.log)))
+                    if (File.Exists(Path.Combine(_dir, "test.log")))
                     {
-                        text = File.ReadAllText(Path.Combine(_dir, test.log));
+                        text = File.ReadAllText(Path.Combine(_dir, "test.log"));
                         break;
                     }
                 }
@@ -658,9 +658,9 @@ namespace UnitTestLoggers
 
                 try
                 {
-                    if (File.Exists(Path.Combine(_dir, test.log)))
+                    if (File.Exists(Path.Combine(_dir, "test.log")))
                     {
-                        text = File.ReadAllText(Path.Combine(_dir, test.log));
+                        text = File.ReadAllText(Path.Combine(_dir, "test.log"));
                         break;
                     }
                 }
@@ -734,9 +734,9 @@ namespace UnitTestLoggers
                 Logger.Flush();
                 try
                 {
-                    if (File.Exists(Path.Combine(_dir, test.log)))
+                    if (File.Exists(Path.Combine(_dir, "test.log")))
                     {
-                        text = File.ReadAllText(Path.Combine(_dir, test.log));
+                        text = File.ReadAllText(Path.Combine(_dir, "test.log"));
                         break;
                     }
                 }
@@ -937,9 +937,9 @@ namespace UnitTestLoggers
                 Logger.Flush();
                 try
                 {
-                    if (File.Exists(Path.Combine(_dir, test.log)))
+                    if (File.Exists(Path.Combine(_dir, "test.log")))
                     {
-                        text = File.ReadAllText(Path.Combine(_dir, test.log));
+                        text = File.ReadAllText(Path.Combine(_dir, "test.log"));
                         break;
                     }
                 }
@@ -1013,9 +1013,9 @@ namespace UnitTestLoggers
                 var text = "";
                 try
                 {
-                    if (File.Exists(Path.Combine(_dir, test.log)))
+                    if (File.Exists(Path.Combine(_dir, "test.log")))
                     {
-                        text = File.ReadAllText(Path.Combine(_dir, test.log));
+                        text = File.ReadAllText(Path.Combine(_dir, "test.log"));
                         break;
                     }
                 }
@@ -1134,7 +1134,7 @@ namespace UnitTestLoggers
                 Logger.Flush();
                 for (int i = 0; i < 10; i++)
                 {
-                    if (File.Exists(Path.Combine(_dir, test.log)))
+                    if (File.Exists(Path.Combine(_dir, "test.log")))
                     {
 
                         break;
@@ -1191,9 +1191,9 @@ namespace UnitTestLoggers
                 {
                     try
                     {
-                        if (File.Exists($@"{dir}\test.log"))
+                        if (File.Exists(Path.Combine(dir, $@"test.log")))
                         {
-                            text = File.ReadAllText($@"{dir}\test.log");
+                            text = File.ReadAllText(Path.Combine(dir, $@"test.log"));
                             break;
                         }
                         Thread.Sleep(20);
