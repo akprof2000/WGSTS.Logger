@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGSTS.Logger", "WGSTS.Logger\WGSTS.Logger.csproj", "{EE64EAE2-26E5-4EDC-99DE-6B6B8343D5F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WGSTS.Logger", "WGSTS.Logger\WGSTS.Logger.csproj", "{EE64EAE2-26E5-4EDC-99DE-6B6B8343D5F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WGSTS.LoggerInterfase", "WGSTS.LoggerInterfase\WGSTS.LoggerInterfase.csproj", "{0D2EF46E-8584-43D9-ACE1-86638A4CE357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WGSTS.LoggerInterfase", "WGSTS.LoggerInterfase\WGSTS.LoggerInterfase.csproj", "{0D2EF46E-8584-43D9-ACE1-86638A4CE357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLogger", "TestLogger\TestLogger.csproj", "{CCD98504-C0B8-461E-B708-0AE37B2CF075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLogger", "TestLogger\TestLogger.csproj", "{CCD98504-C0B8-461E-B708-0AE37B2CF075}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLoggers", "UnitTestLoggers\UnitTestLoggers.csproj", "{CEDC9BCA-F27C-48CC-B707-954DC8075518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestLoggers", "UnitTestLoggers\UnitTestLoggers.csproj", "{CEDC9BCA-F27C-48CC-B707-954DC8075518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
