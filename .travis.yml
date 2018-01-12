@@ -1,0 +1,10 @@
+language: csharp
+dist: trusty
+sudo: required
+mono: none
+dotnet: 2.0
+solution: "./Logger.sln"
+install:
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Logger.sln
+script:
+- xbuild ./Logger.sln
