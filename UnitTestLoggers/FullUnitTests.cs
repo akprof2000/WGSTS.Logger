@@ -143,7 +143,7 @@ namespace UnitTestLoggers
                 Logger.Error(bigtext);
                 for (int i = 0; i < 30; i++)
                 {
-                    if (File.Exists($@"{_dir}\test.0{j}.zip"))
+                    if (File.Exists(Path.Combine(_dir, $@"test.0{j}.zip")))
                     {
                         break;
                     }
@@ -350,7 +350,7 @@ namespace UnitTestLoggers
                 Logger.Error(bigtext);
                 for (int i = 0; i < 100; i++)
                 {
-                    if (File.Exists($@"{_dir}\alias.log"))
+                    if (File.Exists(Path.Combine(_dir, "alias.log")))
                     {
                         break;
                     }
@@ -429,7 +429,7 @@ namespace UnitTestLoggers
                 Logger.Error(bigtext);
                 for (int i = 0; i < 20; i++)
                 {
-                    if (File.Exists($@"{_dir}\test.0{j}.log"))
+                    if (File.Exists(Path.Combine(_dir, $@"test.0{j}.log")))
                     {
                         break;
                     }
@@ -503,9 +503,9 @@ namespace UnitTestLoggers
                 {
                     try
                     {
-                        if (File.Exists($@"{_dir}\test.log"))
+                        if (File.Exists(Path.Combine(_dir, test.log)))
                         {
-                            text = File.ReadAllText($@"{_dir}\test.log");
+                            text = File.ReadAllText(Path.Combine(_dir, test.log));
                             break;
                         }
                         Thread.Sleep(30);
@@ -578,9 +578,9 @@ namespace UnitTestLoggers
                 var text = "";
                 try
                 {
-                    if (File.Exists($@"{_dir}\test.log"))
+                    if (File.Exists(Path.Combine(_dir, test.log)))
                     {
-                        text = File.ReadAllText($@"{_dir}\test.log");
+                        text = File.ReadAllText(Path.Combine(_dir, test.log));
                         break;
                     }
                 }
@@ -658,9 +658,9 @@ namespace UnitTestLoggers
 
                 try
                 {
-                    if (File.Exists($@"{_dir}\test.log"))
+                    if (File.Exists(Path.Combine(_dir, test.log)))
                     {
-                        text = File.ReadAllText($@"{_dir}\test.log");
+                        text = File.ReadAllText(Path.Combine(_dir, test.log));
                         break;
                     }
                 }
@@ -734,9 +734,9 @@ namespace UnitTestLoggers
                 Logger.Flush();
                 try
                 {
-                    if (File.Exists($@"{_dir}\test.log"))
+                    if (File.Exists(Path.Combine(_dir, test.log)))
                     {
-                        text = File.ReadAllText($@"{_dir}\test.log");
+                        text = File.ReadAllText(Path.Combine(_dir, test.log));
                         break;
                     }
                 }
@@ -937,9 +937,9 @@ namespace UnitTestLoggers
                 Logger.Flush();
                 try
                 {
-                    if (File.Exists($@"{_dir}\test.log"))
+                    if (File.Exists(Path.Combine(_dir, test.log)))
                     {
-                        text = File.ReadAllText($@"{_dir}\test.log");
+                        text = File.ReadAllText(Path.Combine(_dir, test.log));
                         break;
                     }
                 }
@@ -1013,9 +1013,9 @@ namespace UnitTestLoggers
                 var text = "";
                 try
                 {
-                    if (File.Exists($@"{_dir}\test.log"))
+                    if (File.Exists(Path.Combine(_dir, test.log)))
                     {
-                        text = File.ReadAllText($@"{_dir}\test.log");
+                        text = File.ReadAllText(Path.Combine(_dir, test.log));
                         break;
                     }
                 }
@@ -1134,7 +1134,7 @@ namespace UnitTestLoggers
                 Logger.Flush();
                 for (int i = 0; i < 10; i++)
                 {
-                    if (File.Exists($@"{_dir}\test.log"))
+                    if (File.Exists(Path.Combine(_dir, test.log)))
                     {
 
                         break;
@@ -1163,7 +1163,7 @@ namespace UnitTestLoggers
                 return;
             }
 
-            var dir = @"c:\sni\namos\trace";
+            var dir = Path.Combine(Environment.CurrentDirectory, "trace");
             Directory.CreateDirectory(dir);
 
             foreach (LogLevel lev in Enum.GetValues(typeof(LogLevel)))
