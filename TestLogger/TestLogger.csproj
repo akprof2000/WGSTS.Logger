@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WGSTS.LoggerInterfase\WGSTS.LoggerInterfase.csproj" />
+    <ProjectReference Include="..\WGSTS.Logger\WGSTS.Logger.csproj" />
+  </ItemGroup>
+
+</Project>
