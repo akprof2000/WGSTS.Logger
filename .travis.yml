@@ -6,4 +6,4 @@ dotnet: 2.0.0
 before_script:
   - dotnet restore
 script:  
-  - dotnet test ./UnitTestLoggers/UnitTestLoggers -c Release -f netcoreapp2.0
+  - dotnet test ./UnitTestLoggers -c Release -f netcoreapp2.0
