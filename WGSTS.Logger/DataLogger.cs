@@ -222,6 +222,11 @@ namespace WGSTS.Logger
         {
             Logger.Flush();
         }
+
+        static public DataLogger GetLogger(string fileName, int filecount = -1, int filesize = -1, LogLevel level = LogLevel.Default)
+        {
+            return Logger.GetLogger(fileName, filecount, filesize, level);
+        }
     }
 
 }

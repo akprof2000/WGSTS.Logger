@@ -41,6 +41,7 @@ namespace WGSTS.Logger
         void WriteWarning(object messArray);
         void WriteWarning(string data);
         void Flush();
+        ILogger GetLogger(string fileName, int filecount = -1, int filesize = -1, LogLevel level = LogLevel.Default);
 
     }
 }

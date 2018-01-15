@@ -41,6 +41,11 @@ namespace WGSTS.Logger
          
         }
 
+        public ILogger GetLogger(string fileName, int filecount = -1, int filesize = -1, LogLevel level = LogLevel.Default)
+        {
+            return this;
+        }
+
         public void Info(params object[] messArray)
         {
          
