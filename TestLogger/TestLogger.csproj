@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WGSTS.LoggerInterfase\WGSTS.LoggerInterfase.csproj" />
     <ProjectReference Include="..\WGSTS.Logger\WGSTS.Logger.csproj" />
   </ItemGroup>
 
