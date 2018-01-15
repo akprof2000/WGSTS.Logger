@@ -206,6 +206,7 @@ namespace UnitTestLoggers
             TestSetFileNameLogger();
             Logger.LogLevel = LogLevel.Trace;
             var log = Logger.GetLogger();
+            log = (DataLogger)(log as ILogger).GetLogger("new.log", 10, 10);
             try
             {
                 throw new Exception("error");
