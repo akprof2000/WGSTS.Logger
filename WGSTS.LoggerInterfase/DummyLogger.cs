@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WGSTS.Logger
 {
-    class DummyLogger : ILogger
+    public class DummyLogger : ILogger
     {
         public void Debug(params object[] messArray)
         {
