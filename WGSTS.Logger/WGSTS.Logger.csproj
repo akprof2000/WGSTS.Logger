@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
     <FileVersion>1.0.0.3</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.3</Version>
+    <Version>1.0.0.4</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.5.0-rc03" />
-    <PackageReference Include="WGSTS.LoggerInterfase" Version="1.0.0.2" />
+    <PackageReference Include="WGSTS.LoggerInterfase" Version="1.0.0.4" />
   </ItemGroup>
 
 </Project>

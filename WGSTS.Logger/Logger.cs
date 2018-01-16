@@ -19,7 +19,7 @@ namespace WGSTS.Logger
         const int SW_HIDE = 0;
         const int SW_SHOW = 5;
 
-        static int _deepparse = 5;
+        static int _deepparse = 6;
 
 
         public static int DeepParse
@@ -114,7 +114,7 @@ namespace WGSTS.Logger
         {
             var alias = Guid.NewGuid().ToString();
 
-            _listAlias[alias] = new FileLogData() { Name = alias, FileName = Path.GetFullPath(Path.Combine(_basepath, fileName)), FileCount = filecount == -1 ? _listAlias[Const_AliasName].FileCount : filecount, FileSize = filesize == -1 ? _listAlias[Const_AliasName].FileSize : filesize, Level = level, DeepParse = DeepParse + 1 };
+            _listAlias[alias] = new FileLogData() { Name = alias, FileName = Path.GetFullPath(Path.Combine(_basepath, fileName)), FileCount = filecount == -1 ? _listAlias[Const_AliasName].FileCount : filecount, FileSize = filesize == -1 ? _listAlias[Const_AliasName].FileSize : filesize, Level = level, DeepParse = DeepParse };
             if (level == LogLevel.Default)
                 _listAlias[alias].SetLogLevelIfDefault(LogLevel);
             _listAlias[alias].Init();
@@ -240,242 +240,7 @@ namespace WGSTS.Logger
         }
 
 
-
-        private static void writeExCore(LogLevel level, string mes, string alias)
-        {
-            writeCore(level, mes, alias, true);
-        }
-
-
-        public static void Write(LogLevel level, string message, string alias = null)
-        {
-            writeCoreA(level, message, alias);
-        }
-
-        public static void WriteError(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Error, writeException(ex), alias);
-        }
-
-        public static void WriteWarning(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Warn, writeException(ex), alias);
-        }
-
-        public static void WriteInfo(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Info, writeException(ex), alias);
-        }
-
-
-        public static void WriteTrace(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Trace, writeException(ex), alias);
-        }
-
-        public static void WriteDebug(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Debug, writeException(ex), alias);
-        }
-
-
-        public static void WriteFatal(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Fatal, writeException(ex), alias);
-        }
-
-        public static void Write(Exception ex, string alias = null)
-        {
-            writeExCore(LogLevel.Fatal, writeException(ex), alias);
-        }
-
-
-        public static void WriteFatal(string data, string alias = null)
-        {
-
-            writeCoreA(LogLevel.Fatal, data, alias);
-        }
-
-        public static void WriteError(string data, string alias = null)
-        {
-
-            writeCoreA(LogLevel.Error, data, alias);
-        }
-
-        public static void WriteWarning(string data, string alias = null)
-        {
-            writeCoreA(LogLevel.Warn, data, alias);
-        }
-
-        public static void WriteInfo(string data, string alias = null)
-        {
-            writeCoreA(LogLevel.Info, data, alias);
-        }
-
-        public static void WriteDebug(string data, string alias = null)
-        {
-            writeCoreA(LogLevel.Debug, data, alias);
-        }
-
-        public static void WriteTrace(string data, string alias = null)
-        {
-            writeCoreA(LogLevel.Trace, data, alias);
-        }
-
-
-        public static void Fatal(params string[] messArray)
-        {
-            Write(LogLevel.Fatal, messArray, _alias);
-        }
-
-        public static void Error(params string[] messArray)
-        {
-            Write(LogLevel.Error, messArray, _alias);
-        }
-
-        public static void Warn(params string[] messArray)
-        {
-
-            Write(LogLevel.Warn, messArray, _alias);
-        }
-
-        public static void Info(params string[] messArray)
-        {
-
-            Write(LogLevel.Info, messArray, _alias);
-        }
-
-        public static void Trace(params string[] messArray)
-        {
-
-            Write(LogLevel.Trace, messArray, _alias);
-        }
-
-        public static void Debug(params string[] messArray)
-        {
-
-            Write(LogLevel.Debug, messArray, _alias);
-        }
-
-        public static void Fatal(params object[] messArray)
-        {
-            Write(LogLevel.Fatal, messArray, _alias);
-        }
-
-        public static void Error(params object[] messArray)
-        {
-            Write(LogLevel.Error, messArray, _alias);
-        }
-
-        public static void Warn(params object[] messArray)
-        {
-            Write(LogLevel.Warn, messArray, _alias);
-        }
-
-        public static void Info(params object[] messArray)
-        {
-
-            Write(LogLevel.Info, messArray, _alias);
-        }
-
-        public static void Debug(params object[] messArray)
-        {
-
-            Write(LogLevel.Debug, messArray, _alias);
-        }
-
-        public static void Trace(params object[] messArray)
-        {
-
-            Write(LogLevel.Trace, messArray, _alias);
-        }
-
-
-
-        public static void WriteDebug(object messArray, string alias = null)
-        {
-            if (messArray is Exception)
-            {
-                writeExCore(LogLevel.Debug, writeException((Exception)messArray), alias);
-            }
-            else
-                Write(LogLevel.Debug, messArray, alias);
-        }
-
-
-        public static void WriteTrace(object messArray, string alias = null)
-        {
-            if (messArray is Exception)
-            {
-                writeExCore(LogLevel.Trace, writeException((Exception)messArray), alias);
-            }
-            else
-                Write(LogLevel.Trace, messArray, alias);
-        }
-
-
-        public static void WriteError(object messArray, string alias = null)
-        {
-            if (messArray is Exception)
-            {
-                writeExCore(LogLevel.Error, writeException((Exception)messArray), alias);
-            }
-            else
-                Write(LogLevel.Error, messArray, alias);
-        }
-
-
-        public static void WriteFatal(object messArray, string alias = null)
-        {
-            if (messArray is Exception)
-            {
-                writeExCore(LogLevel.Fatal, writeException((Exception)messArray), alias);
-            }
-            else
-                Write(LogLevel.Fatal, messArray, alias);
-        }
-
-        public static void WriteWarning(object messArray, string alias = null)
-        {
-            if (messArray is Exception)
-            {
-                writeExCore(LogLevel.Warn, writeException((Exception)messArray), alias);
-            }
-            else
-                Write(LogLevel.Warn, messArray, alias);
-        }
-
-        public static void WriteInfo(object messArray, string alias = null)
-        {
-            if (messArray is Exception)
-            {
-                writeExCore(LogLevel.Info, writeException((Exception)messArray), alias);
-            }
-            else
-                Write(LogLevel.Info, messArray, alias);
-        }
-
-        public static void SetAlias(string alias = null)
-        {
-            _alias = alias;
-        }
-
-        public static void Write(Exception ex, string mess, string alias)
-        {
-
-            writeExCore(LogLevel.Fatal, string.Format("{0}{1}", mess, writeException(ex)), alias);
-        }
-
-
-        public static void Write(LogLevel level, string[] messArray, string alias = null)
-        {
-
-            var sb = arrayToMessage(messArray);
-
-            writeCore(level, string.Format("{0}", sb), alias);
-        }
-
-        public static void Write(LogLevel level, object mess, string alias = null)
+        internal static void Write(LogLevel level, object mess, string alias = null)
         {
 
             var sb = new StringBuilder();
@@ -484,7 +249,7 @@ namespace WGSTS.Logger
             writeCore(level, string.Format("{0}", sb), alias);
         }
 
-        public static void Write(LogLevel level, object[] messArray, string alias = null)
+        private static void write(LogLevel level, object[] messArray, string alias = null)
         {
 
             var sb = new StringBuilder();
@@ -497,6 +262,187 @@ namespace WGSTS.Logger
             writeCore(level, string.Format("{0}", sb), alias);
         }
 
+        /*
+        public static void Write(LogLevel level, string message, string alias = null)
+        {
+            WriteA(level, message, alias);
+        }
+
+        public static void Write(Exception ex, string alias = null)
+        {
+            WriteA(ex, alias);
+        }
+
+        public static void Write(Exception ex, string mess, string alias)
+        {
+            WriteA(ex, mess, alias);
+        }
+
+
+        internal static void WriteA(LogLevel level, string message, string alias = null)
+        {
+            writeCoreA(level, message, alias);
+        }
+
+        internal static void WriteA(Exception ex, string alias = null)
+        {
+            writeExCore(LogLevel.Fatal, writeException(ex), alias);
+        }
+
+        internal static void WriteA(Exception ex, string mess, string alias)
+        {
+
+            writeExCore(LogLevel.Fatal, string.Format("{0}{1}", mess, writeException(ex)), alias);
+        }
+        */
+
+        public static void Fatal(params string[] messArray)
+        {
+            FatalA(messArray);            
+        }
+
+        public static void Error(params string[] messArray)
+        {
+            ErrorA(messArray);
+            
+        }
+
+        public static void Warn(params string[] messArray)
+        {
+            WarnA(messArray);
+            
+        }
+
+        public static void Info(params string[] messArray)
+        {
+            InfoA(messArray);
+        }
+
+        public static void Trace(params string[] messArray)
+        {
+            TraceA(messArray);
+        }
+
+        public static void Debug(params string[] messArray)
+        {
+            DebugA(messArray);
+        }
+
+        public static void Fatal(params object[] messArray)
+        {
+            FatalA(messArray);
+        }
+
+        public static void Error(params object[] messArray)
+        {
+            ErrorA(messArray);            
+        }
+
+        public static void Warn(params object[] messArray)
+        {
+            WarnA(messArray);
+        }
+
+        public static void Info(params object[] messArray)
+        {
+            InfoA(messArray);            
+        }
+
+        public static void Debug(params object[] messArray)
+        {
+            DebugA(messArray);            
+        }
+
+        public static void Trace(params object[] messArray)
+        {
+            TraceA(messArray);            
+        }
+        
+        internal static void FatalA(params string[] messArray)
+        {
+            write(LogLevel.Fatal, messArray, _alias);
+        }
+
+        internal static void ErrorA(params string[] messArray)
+        {
+            write(LogLevel.Error, messArray, _alias);
+        }
+
+        internal static void WarnA(params string[] messArray)
+        {
+
+            write(LogLevel.Warn, messArray, _alias);
+        }
+
+        internal static void InfoA(params string[] messArray)
+        {
+
+            write(LogLevel.Info, messArray, _alias);
+        }
+
+        internal static void TraceA(params string[] messArray)
+        {
+
+            write(LogLevel.Trace, messArray, _alias);
+        }
+
+        internal static void DebugA(params string[] messArray)
+        {
+
+            write(LogLevel.Debug, messArray, _alias);
+        }
+
+        internal static void FatalA(params object[] messArray)
+        {
+            write(LogLevel.Fatal, messArray, _alias);
+        }
+
+        internal static void ErrorA(params object[] messArray)
+        {
+            write(LogLevel.Error, messArray, _alias);
+        }
+
+        internal static void WarnA(params object[] messArray)
+        {
+            write(LogLevel.Warn, messArray, _alias);
+        }
+
+        internal static void InfoA(params object[] messArray)
+        {
+
+            write(LogLevel.Info, messArray, _alias);
+        }
+
+        internal static void DebugA(params object[] messArray)
+        {
+
+            write(LogLevel.Debug, messArray, _alias);
+        }
+
+        internal static void TraceA(params object[] messArray)
+        {
+
+            write(LogLevel.Trace, messArray, _alias);
+        }
+
+
+        private static void write(LogLevel level, string[] messArray, string alias = null)
+        {
+
+            var sb = arrayToMessage(messArray);
+
+            writeCore(level, string.Format("{0}", sb), alias);
+        }
+
+        private static void writeExCore(LogLevel level, string mes, string alias)
+        {
+            writeCore(level, mes, alias, true);
+        }
+
+        public static void SetAlias(string alias = null)
+        {
+            _alias = alias;
+        }
 
         private static string arrayToMessage(object[] messArray)
         {

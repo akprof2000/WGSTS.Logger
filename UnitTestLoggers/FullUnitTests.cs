@@ -14,7 +14,7 @@ namespace UnitTestLoggers
     public class FullUnitTests
     {
         string _dir = null;
-      
+
 
         [TestMethod]
         public void FromJsonJHelp()
@@ -206,67 +206,31 @@ namespace UnitTestLoggers
             TestSetFileNameLogger();
             Logger.LogLevel = LogLevel.Trace;
             var log = Logger.GetLogger();
-            log = (DataLogger)(log as ILogger).GetLogger("new.log", 10, 10);
+            log = (DataLogger)(log as ILogger).GetLogger("new.log", 10, 10, LogLevel.Default);
             try
             {
                 throw new Exception("error");
             }
             catch (Exception ex)
             {
-                Logger.Write(ex);
-
-                Logger.WriteDebug(ex);
-                Logger.WriteTrace(ex);
-                Logger.WriteWarning(ex);
-                Logger.WriteInfo(ex);
-                Logger.WriteError(ex);
-                Logger.WriteFatal(ex);
-
-                Logger.WriteDebug((object)ex);
-                Logger.WriteTrace((object)ex);
-                Logger.WriteWarning((object)ex);
-                Logger.WriteInfo((object)ex);
-                Logger.WriteError((object)ex);
-                Logger.WriteFatal((object)ex);
-
-
-
-                log.Write(ex);
-
-                log.WriteDebug(ex);
-                log.WriteTrace(ex);
-                log.WriteWarning(ex);
-                log.WriteInfo(ex);
-                log.WriteError(ex);
-                log.WriteFatal(ex);
-
-                log.WriteDebug((object)ex);
-                log.WriteTrace((object)ex);
-                log.WriteWarning((object)ex);
-                log.WriteInfo((object)ex);
-                log.WriteError((object)ex);
-                log.WriteFatal((object)ex);
-
-
-                log.Write(ex, "Test");
-
+                log.Fatal(ex, "Test");
             }
-            var text = Logger.GetLastMessage(LogLevel.Default);
+            log.Flush();
+
+            var text = Logger.GetLastMessage(LogLevel.Default) ?? ""; ;
             Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Fatal);
-            Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Info);
-            Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Debug);
-            Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Trace);
-            Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Warn);
-            Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Error);
-            Assert.AreEqual(text.Contains("error"), true);
-            text = Logger.GetLastMessage(LogLevel.Fatal);
-            Assert.AreEqual(string.IsNullOrEmpty(text), true);
+            text = Logger.GetLastMessage(LogLevel.Info) ?? ""; ;
+            Assert.AreEqual(text.Contains("error"), false);
+            text = Logger.GetLastMessage(LogLevel.Debug) ?? "";
+            Assert.AreEqual(text.Contains("error"), false);
+            text = Logger.GetLastMessage(LogLevel.Trace) ?? ""; ;
+            Assert.AreEqual(text.Contains("error"), false);
+            text = Logger.GetLastMessage(LogLevel.Warn) ?? ""; ;
+            Assert.AreEqual(text.Contains("error"), false);
+            text = Logger.GetLastMessage(LogLevel.Error) ?? ""; ;
+            Assert.AreEqual(text.Contains("error"), false);
+            text = Logger.GetLastMessage(LogLevel.Fatal) ?? ""; ;
+            Assert.AreEqual(string.IsNullOrEmpty(text), false);
 
         }
 
@@ -342,7 +306,7 @@ namespace UnitTestLoggers
             Logger.SetAliasFile("alias.log", "Test1", 10, 1, LogLevel.Info);
 
             Logger.SetAlias("Test1");
-            Logger.Write(LogLevel.Trace, "test1");
+
 
             Thread.Sleep(100);
             Logger.Flush();
@@ -380,18 +344,6 @@ namespace UnitTestLoggers
             Assert.AreEqual(result.AreEqual, true);
 
             logger1 = Logger.GetLogger("test1", 10, 100, LogLevel.Fatal);
-        }
-        [TestMethod]
-        public void TestWriteFileLog()
-        {
-            TestSetFileNameLogger();
-            var log = Logger.GetLogger();
-            var text = "data";
-            foreach (LogLevel lev in Enum.GetValues(typeof(LogLevel)))
-            {
-                TestWriteFileLog(text, lev, log);
-                text = $"{text} data";
-            }
         }
 
 
@@ -493,11 +445,8 @@ namespace UnitTestLoggers
 
 
                 log.Fatal(data);
-                log.WriteFatal(data);
-
 
                 Logger.Fatal(data);
-                Logger.WriteFatal(data);
                 var text = "";
                 Logger.Flush();
                 for (int i = 0; i < 10; i++)
@@ -570,10 +519,9 @@ namespace UnitTestLoggers
                 Logger.LogLevel = lev;
 
                 log.Error(data);
-                log.WriteError(data);
 
                 Logger.Error(data);
-                Logger.WriteError(data);
+
 
                 Logger.Flush();
                 var text = "";
@@ -646,11 +594,10 @@ namespace UnitTestLoggers
                 Logger.LogLevel = lev;
 
                 Logger.Warn(data);
-                Logger.WriteWarning(data);
 
 
                 log.Warning(data);
-                log.WriteWarning(data);
+
 
                 var text = "";
                 Logger.LogLevel = lev;
@@ -726,11 +673,9 @@ namespace UnitTestLoggers
 
                 Logger.LogLevel = lev;
                 Logger.Info(data);
-                Logger.WriteInfo(data);
 
 
                 log.Info(data);
-                log.WriteInfo(data);
                 var text = "";
                 Logger.Flush();
                 try
@@ -816,49 +761,39 @@ namespace UnitTestLoggers
                         {
                             case LogLevel.Trace:
                                 Logger.Trace(data);
-                                Logger.WriteTrace(data);
 
                                 log.Trace(data);
-                                log.WriteTrace(data);
 
                                 break;
                             case LogLevel.Debug:
                                 Logger.Debug(data);
-                                Logger.WriteDebug(data);
 
                                 log.Debug(data);
-                                log.WriteDebug(data);
 
                                 break;
                             case LogLevel.Info:
                                 Logger.Info(data);
-                                Logger.WriteInfo(data);
 
                                 log.Info(data);
-                                log.WriteInfo(data);
 
                                 break;
                             case LogLevel.Warn:
                                 Logger.Warn(data);
-                                Logger.WriteWarning(data);
 
                                 log.Warning(data);
-                                log.WriteWarning(data);
 
                                 break;
                             case LogLevel.Error:
                                 Logger.Error(data);
-                                Logger.WriteError(data);
+
 
                                 log.Error(data);
-                                log.WriteError(data);
+
 
                                 break;
                             case LogLevel.Fatal:
-                                Logger.WriteFatal(data);
                                 Logger.Fatal(data);
 
-                                log.WriteFatal(data);
                                 log.Fatal(data);
 
                                 break;
@@ -871,10 +806,6 @@ namespace UnitTestLoggers
 
 
 
-                        Logger.Write(curLev, data);
-                        log.Write(curLev, data);
-                        if (data is Array)
-                            log.Write(curLev, (object[])data);
                     }
                 }
             }
@@ -931,9 +862,7 @@ namespace UnitTestLoggers
 
                 Logger.LogLevel = lev;
                 log.Debug(data);
-                log.WriteDebug(data);
                 Logger.Debug(data);
-                Logger.WriteDebug(data);
                 var text = "";
                 Logger.Flush();
                 try
@@ -1005,10 +934,8 @@ namespace UnitTestLoggers
 
                 Logger.LogLevel = lev;
                 Logger.Trace(data);
-                Logger.WriteTrace(data);
 
                 log.Trace(data);
-                log.WriteTrace(data);
                 Logger.Flush();
 
                 var text = "";
@@ -1127,10 +1054,44 @@ namespace UnitTestLoggers
 
 
                 Logger.LogLevel = lev;
-                Logger.Write(level, data);
+                switch (level)
+                {
+                    case LogLevel.Trace:
+                        log.Trace(data);
+                        Logger.Trace(data);
+                        break;
+                    case LogLevel.Debug:
+                        log.Debug(data);
+                        Logger.Debug(data);
 
+                        break;
+                    case LogLevel.Info:
+                        log.Info(data);
+                        Logger.Info(data);
 
-                log.Write(level, data);
+                        break;
+                    case LogLevel.Warn:
+                        log.Warning(data);
+                        Logger.Warn(data);
+
+                        break;
+                    case LogLevel.Error:
+                        log.Error(data);
+                        Logger.Error(data);
+
+                        break;
+                    case LogLevel.Fatal:
+                        log.Fatal(data);
+                        Logger.Fatal(data);
+
+                        break;
+                    case LogLevel.Off:
+                        break;
+                    case LogLevel.Default:
+                        break;
+                    default:
+                        break;
+                }
 
                 Logger.Flush();
                 for (int i = 0; i < 10; i++)
@@ -1151,65 +1112,7 @@ namespace UnitTestLoggers
 
         }
 
-        public void TestWriteFileLog(string data, LogLevel level, DataLogger log)
-        {
-            TestSetFileNameLogger();
 
-            if (level == LogLevel.Off)
-            {
-                return;
-            }
-            if (level == LogLevel.Default)
-            {
-                return;
-            }
-
-            var dir = Path.Combine(Environment.CurrentDirectory, "trace");
-            Directory.CreateDirectory(dir);
-
-            foreach (LogLevel lev in Enum.GetValues(typeof(LogLevel)))
-            {
-
-                if (lev == LogLevel.Default)
-                {
-                    continue;
-                }
-
-
-
-
-
-                Logger.LogLevel = lev;
-                Logger.Write(level, data);
-                Logger.Write(level, data.Split(' '));
-
-
-                log.Write(level, data);
-                log.Write(level, data.Split(' '));
-
-                var text = "";
-                for (int i = 0; i < 10; i++)
-                {
-                    try
-                    {
-                        if (File.Exists(Path.Combine(dir, $@"test.log")))
-                        {
-                            text = File.ReadAllText(Path.Combine(dir, $@"test.log"));
-                            break;
-                        }
-                        Thread.Sleep(20);
-                    }
-                    catch
-                    {
-                        Thread.Sleep(500);
-                    }
-                }
-
-
-
-            }
-
-        }
 
 
         const string bigtext = @"<ROOT xmlns = """" >
