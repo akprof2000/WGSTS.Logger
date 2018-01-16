@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
+    <AssemblyVersion>1.0.0.5</AssemblyVersion>
+    <FileVersion>1.0.0.5</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.4</Version>
+    <Version>1.0.0.5</Version>
+    <Description>Логгер нашлепка на NLog, сделан для более удбного логирования в системе работает в спайке с компонентом передачи объекта логирования через интерфейс, работает как статический объект так и как много объектная модель где каждый объект генерит свой файл, но так же все данные попадют в общий файл</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -15,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.5.0-rc03" />
-    <PackageReference Include="WGSTS.LoggerInterfase" Version="1.0.0.4" />
+    <PackageReference Include="WGSTS.LoggerInterfase" Version="1.0.0.6" />
   </ItemGroup>
 
 </Project>

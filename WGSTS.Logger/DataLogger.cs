@@ -14,63 +14,63 @@ namespace WGSTS.Logger
         public void Fatal(params string[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Fatal(messArray);
+            Logger.FatalA(messArray);
         }
 
         public void Error(params string[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Error(messArray);
+            Logger.ErrorA(messArray);
         }
 
         public void Warning(params string[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Warn(messArray);
+            Logger.WarnA(messArray);
         }
 
         public void Info(params string[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Info(messArray);
+            Logger.InfoA(messArray);
         }
 
         public void Trace(params string[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Trace(messArray);
+            Logger.TraceA(messArray);
         }
 
         public void Debug(params string[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Debug(messArray);
+            Logger.DebugA(messArray);
         }
         
         public void Fatal(params object[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Fatal(messArray);
+            Logger.FatalA(messArray);
 
         }
 
         public void Error(params object[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Error(messArray);
+            Logger.ErrorA(messArray);
 
         }
         public void Warning(params object[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Warn(messArray);
+            Logger.WarnA(messArray);
 
         }
 
         public void Info(params object[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Info(messArray);
+            Logger.InfoA(messArray);
 
         }
 
@@ -78,14 +78,14 @@ namespace WGSTS.Logger
         {
 
             Logger.SetAlias(_alias);
-            Logger.Debug(messArray);
+            Logger.DebugA(messArray);
 
         }
 
         public void Trace(params object[] messArray)
         {
             Logger.SetAlias(_alias);
-            Logger.Trace(messArray);
+            Logger.TraceA(messArray);
         }
 
         public void Flush()
