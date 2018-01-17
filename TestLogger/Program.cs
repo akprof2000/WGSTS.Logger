@@ -49,7 +49,10 @@ namespace TestLogger
 
         public static void Main(string[] args)
         {
+            
             Logger.LogLevel = LogLevel.Info;
+            Logger.ConsoleLevel = LogLevel.Warn;
+            
             _log = Logger.GetLogger();
 
             Logger.Trace("This is a Trace message", "a", "b", "c");
@@ -59,13 +62,14 @@ namespace TestLogger
             Logger.Info("This is an Info message");
             _log.Info("This is an Info message");
             a();
+            Logger.IsConsole = false;
             Logger.Warn("This is a Warn message");
             _log.Warning("This is a Warn message");
             Logger.Error("This is an Error message");
             _log.Error("This is an Error message");
             Logger.Fatal("This is a Fatal error message");
             _log.Fatal("This is a Fatal error message");
-
+            Logger.IsConsole = true;
             var logger = Logger.GetLogger("SecondLog.log");
             try
             {

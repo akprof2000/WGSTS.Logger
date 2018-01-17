@@ -4,20 +4,23 @@ using NLog.Targets.Wrappers;
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace WGSTS.Logger
 {
     static class NLogHelper
     {
-        private static bool _isConsole;
+        public static bool IsConsole { get; set; }
+        public static NLog.LogLevel ConsoleLevel { get; set; } = NLog.LogLevel.Trace;
+
         private static ConcurrentDictionary<string, NLog.Logger> _logger = new ConcurrentDictionary<string, NLog.Logger>();
 
 
         static NLogHelper()
         {
 
-            _isConsole = Environment.UserInteractive;
+            IsConsole = Environment.UserInteractive;
             //_logger = LogManager.GetCurrentClassLogger();
             var config = new LoggingConfiguration();
 
@@ -54,7 +57,7 @@ namespace WGSTS.Logger
             var config = NLog.LogManager.Configuration;
 
 
-            var verbose = "${date:format=dd.MM HH\\:mm\\:ss.fff} ${uppercase:${level}:padding=-5} ${pad:padding=-60:fixedLength=false:inner=[${threadid}]${callsite:skipFrames=1:className=True:fileName=True:includeNamespace=True:includeSourcePath=False:methodName=True:cleanNamesOfAnonymousDelegates=True}} ${message} ${when:when=level==LogLevel.Fatal:inner=${newline}${stacktrace::skipFrames=1:format=DetailedFlat:separator=\r\n}}";
+            var verbose = "${date:format=dd.MM HH\\:mm\\:ss.fff} ${uppercase:${level}:padding=-5} ${pad:padding=-90:fixedLength=false:inner=[${threadid}]${callsite:skipFrames=1:className=True:fileName=True:includeNamespace=True:includeSourcePath=False:methodName=True:cleanNamesOfAnonymousDelegates=True}} ${message} ${when:when=level==LogLevel.Fatal:inner=${newline}${stacktrace::skipFrames=1:format=DetailedFlat:separator=\r\n}}";
             verbose = verbose.Replace("skipFrames=1", $"skipFrames={skipframes}");
             var verbose_inline = "${replace:inner=${verbose}:searchFor=\\r\\n|\\n:replaceWith=\r\n                         :regex=true}".Replace("${verbose}", verbose);
 
@@ -106,17 +109,20 @@ namespace WGSTS.Logger
                     config.LoggingRules.Remove(_listRule["console"]);
                 }
 
-                var target = new ColoredConsoleTarget()
+                if (IsConsole)
                 {
-                    DetectConsoleAvailable = true,
-                    Layout = verbose_inline
-                };
+                    var target = new ColoredConsoleTarget()
+                    {
+                        DetectConsoleAvailable = true,
+                        Layout = verbose_inline
+                    };
 
-                config.AddTarget("console", target);
-                var rule1 = new LoggingRule("*", NLog.LogLevel.Trace , target);
-                config.LoggingRules.Add(rule1);
-                _listRule[$"console"] = rule1;
-
+                    config.AddTarget("console", target);
+                    var rule1 = new LoggingRule("*", ConsoleLevel, target);
+                    config.LoggingRules.Add(rule1);
+                    _listRule[$"console"] = rule1;
+                }
+                
                 rule2 = new LoggingRule("*", NLog.LogLevel.Trace, atw);
                 config.LoggingRules.Add(rule2);
             }
@@ -149,6 +155,8 @@ namespace WGSTS.Logger
 
                 foreach (var item in NLog.LogManager.Configuration.LoggingRules)
                 {
+                    if (item.Targets.FirstOrDefault() is ColoredConsoleTarget)
+                        continue;
                     if (item.NameMatches(alias))
                     {
                         item.DisableLoggingForLevel(NLog.LogLevel.Off);

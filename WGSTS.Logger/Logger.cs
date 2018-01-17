@@ -13,6 +13,55 @@ namespace WGSTS.Logger
 {
     public static class Logger
     {
+
+        public static bool IsConsole
+        {
+            get => NLogHelper.IsConsole;
+            set
+            {
+                NLogHelper.IsConsole = value;
+                _listAlias[Const_AliasName].Init();
+            }
+        }
+
+
+        public static LogLevel ConsoleLevel
+        {
+            set
+            {
+                switch (value)
+                {
+                    case LogLevel.Trace:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Trace;
+                        break;
+                    case LogLevel.Debug:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Debug;
+                        break;
+                    case LogLevel.Info:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Info;
+                        break;
+                    case LogLevel.Warn:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Warn;
+                        break;
+                    case LogLevel.Error:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Error;
+                        break;
+                    case LogLevel.Fatal:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Fatal;
+                        break;
+                    case LogLevel.Off:
+                        NLogHelper.ConsoleLevel = NLog.LogLevel.Off;
+                        break;
+                    case LogLevel.Default:
+                        break;
+                    default:
+                        break;
+                }
+
+                _listAlias[Const_AliasName].Init();
+            }
+        }
+
         private const string BaseTrace = @"Logging";
         private const string Const_AliasName = "AUTO -1";
 
@@ -61,7 +110,7 @@ namespace WGSTS.Logger
             testConsole();
 
             var baseregpath = AppDomain.CurrentDomain.BaseDirectory;
-            
+
 
             _listAlias[Const_AliasName] = new FileLogData() { FileName = Path.Combine(baseregpath, BaseTrace, $"{Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName)}.log"), FileCount = 10, FileSize = 1024 * 1024 * 10, Level = LogLevel.Debug, DeepParse = DeepParse };
             _basepath = Path.GetDirectoryName(_listAlias[Const_AliasName].FileName);
@@ -81,7 +130,7 @@ namespace WGSTS.Logger
         private static void testConsole()
         {
             _isConsole = Environment.UserInteractive;
-            var baseregpath = AppDomain.CurrentDomain.BaseDirectory;            
+            var baseregpath = AppDomain.CurrentDomain.BaseDirectory;
             Directory.CreateDirectory(Path.Combine(baseregpath, BaseTrace));
             try
             {
@@ -298,19 +347,19 @@ namespace WGSTS.Logger
 
         public static void Fatal(params string[] messArray)
         {
-            FatalA(messArray);            
+            FatalA(messArray);
         }
 
         public static void Error(params string[] messArray)
         {
             ErrorA(messArray);
-            
+
         }
 
         public static void Warn(params string[] messArray)
         {
             WarnA(messArray);
-            
+
         }
 
         public static void Info(params string[] messArray)
@@ -335,7 +384,7 @@ namespace WGSTS.Logger
 
         public static void Error(params object[] messArray)
         {
-            ErrorA(messArray);            
+            ErrorA(messArray);
         }
 
         public static void Warn(params object[] messArray)
@@ -345,19 +394,19 @@ namespace WGSTS.Logger
 
         public static void Info(params object[] messArray)
         {
-            InfoA(messArray);            
+            InfoA(messArray);
         }
 
         public static void Debug(params object[] messArray)
         {
-            DebugA(messArray);            
+            DebugA(messArray);
         }
 
         public static void Trace(params object[] messArray)
         {
-            TraceA(messArray);            
+            TraceA(messArray);
         }
-        
+
         internal static void FatalA(params string[] messArray)
         {
             write(LogLevel.Fatal, messArray, _alias);
