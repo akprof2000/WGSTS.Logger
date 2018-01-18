@@ -16,4 +16,8 @@
     <ProjectReference Include="..\WGSTS.LoggerInterfase\WGSTS.LoggerInterfase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.0.5" />
+  </ItemGroup>
+
 </Project>

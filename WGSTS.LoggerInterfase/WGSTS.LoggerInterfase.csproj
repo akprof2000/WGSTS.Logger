@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.7</AssemblyVersion>
-    <FileVersion>1.0.0.7</FileVersion>
-    <Version>1.0.0.7</Version>
+    <AssemblyVersion>1.0.0.8</AssemblyVersion>
+    <FileVersion>1.0.0.8</FileVersion>
+    <Version>1.0.0.8</Version>
     <Description>Интерфайс для подключения любого логера переданного в модуль
 Рекомендуется инициализировать как ILogger logger = new DummyLogger таким образом програмный модуль будет совершенно свободно работать до передачи в  него корректного логера и начала логирования</Description>
     <PackageProjectUrl>https://github.com/akprof2000/WGSTS.Logger</PackageProjectUrl>
@@ -13,6 +13,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.0.5" />
   </ItemGroup>
 
 </Project>
