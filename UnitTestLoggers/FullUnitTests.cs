@@ -350,49 +350,61 @@ namespace UnitTestLoggers
         [TestMethod]
         public void TestCountUncompressionFileLog()
         {
-            TestSetFileNameLogger();
 
-            Logger.FileSize = 1;
-            Logger.FileCount = 5;
-            Logger.LogLevel = LogLevel.Trace;
-            Logger.Compression = false;
-
-            for (int i = 0; i < 5; i++)
+            for (int l = 0; l < 3; l++)
             {
 
-                var files1 = Directory.GetFiles($@"{_dir}", "*.*");
-                foreach (var item in files1)
+
+                TestSetFileNameLogger();
+
+                Logger.FileSize = 1;
+                Logger.FileCount = 5;
+                Logger.LogLevel = LogLevel.Trace;
+                Logger.Compression = false;
+
+                for (int i = 0; i < 5; i++)
                 {
-                    if (File.Exists(item))
+
+                    var files1 = Directory.GetFiles($@"{_dir}", "*.*");
+                    foreach (var item in files1)
                     {
+                        if (File.Exists(item))
+                        {
 
-                        File.SetAttributes(item, FileAttributes.Normal);
-                        File.Delete(item);
+                            File.SetAttributes(item, FileAttributes.Normal);
+                            File.Delete(item);
+                        }
                     }
+                    Thread.Sleep(10);
                 }
-                Thread.Sleep(10);
-            }
 
 
-            Thread.Sleep(1000);
-            Logger.Error(bigtext);
-            Logger.Flush();
-            for (int j = 0; j < 6; j++)
-            {
+                Thread.Sleep(1000);
                 Logger.Error(bigtext);
-                for (int i = 0; i < 20; i++)
+                Logger.Flush();
+                for (int j = 0; j < 6; j++)
                 {
-                    if (File.Exists(Path.Combine(_dir, $@"test.0{j}.log")))
+                    Logger.Error(bigtext);
+                    for (int i = 0; i < 20; i++)
                     {
-                        break;
+                        if (File.Exists(Path.Combine(_dir, $@"test.0{j}.log")))
+                        {
+                            break;
+                        }
+                        Thread.Sleep(25);
                     }
-                    Thread.Sleep(25);
+                }
+
+                Logger.Flush();
+                var files = Directory.GetFiles($@"{_dir}", "test*.log");
+
+                if (files.Length >= 6)
+                {
+                    Assert.AreEqual(6, files.Length);
+                    break;
                 }
             }
-            Logger.Flush();
-            var files = Directory.GetFiles($@"{_dir}", "test*.log");
-
-            Assert.AreEqual(6, files.Length);
+            
 
         }
 
