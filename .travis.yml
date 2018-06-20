@@ -1,17 +1,8 @@
-version: 1.4.1.{build}
-assembly_info:
-    patch: true
-    file: AssemblyInfo.*
-    assembly_version: "{version}"
-    assembly_file_version: "{version}"
-    assembly_informational_version: "{version}"
-
-
 language: csharp  
 sudo: required  
 dist: trusty  
 mono: none
-dotnet: 2.1.4
+dotnet: 2.1.300
 before_script:
   - dotnet restore
 script:  
