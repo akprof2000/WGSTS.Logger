@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.8</AssemblyVersion>
-    <FileVersion>1.0.0.8</FileVersion>
+    <AssemblyVersion>1.0.0.10</AssemblyVersion>
+    <FileVersion>1.0.0.10</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.8</Version>
+    <Version>1.0.0.10</Version>
     <Description>Логгер нашлепка на NLog, сделан для более удбного логирования в системе работает в спайке с компонентом передачи объекта логирования через интерфейс, работает как статический объект так и как много объектная модель где каждый объект генерит свой файл, но так же все данные попадют в общий файл</Description>
     <PackageProjectUrl>https://github.com/akprof2000/WGSTS.Logger</PackageProjectUrl>
   </PropertyGroup>
@@ -16,12 +16,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" Version="4.5.0-rc07" />
-    <PackageReference Include="WGSTS.LoggerInterfase" Version="1.0.0.9" />
+    <PackageReference Include="NLog" Version="4.5.6" />
+    <PackageReference Include="WGSTS.LoggerInterfase" Version="1.0.0.11" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="Microsoft.NETCore.App" Version="2.0.5" />
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
