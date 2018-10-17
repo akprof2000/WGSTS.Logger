@@ -119,10 +119,28 @@ namespace WGSTS.Logger
 
 
 
-            Write(LogLevel.Info, $"\n\r" +
-                $"******************************************************************************** \n\r" +
-                $"*                      Application logger start                                * \n\r" +
-                $"********************************************************************************");
+            try
+            {
+                var sb = new StringBuilder();
+
+                sb.AppendLine("")
+                  .AppendLine($"********************************************************************************")
+                  .AppendLine($"Application logger start version: {Assembly.GetEntryAssembly().GetName().Version}")
+                  .AppendLine($"Executing file Path: {Assembly.GetEntryAssembly().Location}");
+                var args = Environment.GetCommandLineArgs();
+                if (args.Length > 1)
+                {
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        sb.Append(args[i]).AppendLine(" ");
+                    }
+
+                }
+                sb.AppendLine("********************************************************************************");
+                Info(sb.ToString());
+            }
+            catch
+            { }
 
 
         }
